@@ -1,24 +1,19 @@
-// ============ НАСТРОЙКИ: впишите свои значения ============
 const CONFIG = {
-  // Адрес отправки ответов: замените FORM_ID на идентификатор вашей Google Form
-  FORM_URL: "https://docs.google.com/forms/d/e/FORM_ID/formResponse",
+  FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLScPuvgZ_2DOQ4zit57kxRanVc_pF9IBWlAXj7N4POesWNhdZA/formResponse",
 
-  // Идентификаторы полей (entry.XXXX) из ссылки для предзаполнения.
-  // В Google Form все эти вопросы должны быть типа «Текст (строка)» или «Текст (абзац)».
   ENTRY: {
-    token:       "entry.0000000001",
-    name:        "entry.0000000002",
-    email:       "entry.0000000003",
-    birth_date:  "entry.0000000004", // формат ГГГГ-ММ-ДД
-    gender:      "entry.0000000005",
-    looking_for: "entry.0000000006", // значения через запятую
-    city:        "entry.0000000007",
-    interests:   "entry.0000000008", // значения через запятую
-    bio:         "entry.0000000009",
+    token:       "entry.1871395738",
+    name:        "entry.1871395738",
+    email:       "entry.1030522940",
+    birth_date:  "entry.974664657", 
+    gender:      "entry.1027977616",
+    looking_for: "entry.598080073", 
+    school:        "entry.1172512934",
+    interests:   "entry.660246643", 
+    bio:         "entry.404935907",
   },
   MIN_AGE: 18,
 };
-// ==========================================================
 
 const form = document.getElementById("profile-form");
 const errorBox = document.getElementById("form-error");
@@ -26,19 +21,16 @@ const submitBtn = document.getElementById("submit-btn");
 const successBox = document.getElementById("success");
 const bio = document.getElementById("bio");
 
-// Максимальная дата рождения: сегодня минус MIN_AGE лет
 (function limitBirthDate() {
   const d = new Date();
   d.setFullYear(d.getFullYear() - CONFIG.MIN_AGE);
   document.getElementById("birth_date").max = d.toISOString().slice(0, 10);
 })();
 
-// Счётчик символов в «О себе»
 bio.addEventListener("input", () => {
   document.getElementById("bio-count").textContent = bio.value.length;
 });
 
-// Если страницу открыли по личной ссылке (?u=...), показываем код
 (function showRef() {
   const ref = new URLSearchParams(location.search).get("u");
   if (!ref) return;
@@ -47,7 +39,6 @@ bio.addEventListener("input", () => {
   banner.hidden = false;
 })();
 
-// «Другое»: показываем поле для своих интересов
 const otherToggle = document.getElementById("other-toggle");
 const otherWrap = document.getElementById("other-wrap");
 const otherInput = document.getElementById("interests_other");
@@ -58,7 +49,6 @@ otherToggle.addEventListener("change", () => {
   else otherInput.value = "";
 });
 
-// Свои интересы: делим по запятой, чистим, берём не больше пяти
 function customInterests() {
   if (!otherToggle.checked) return [];
   const seen = new Set();
@@ -69,7 +59,6 @@ function customInterests() {
     .slice(0, 5);
 }
 
-// Все интересы: отмеченные + свои
 function allInterests() {
   const base = checkedValues("interests");
   const lower = new Set(base.map((s) => s.toLowerCase()));
@@ -117,7 +106,6 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!validate()) return;
 
-  // Если поле-ловушка заполнено, это бот: делаем вид, что всё прошло
   if (form.elements.website.value) { form.hidden = true; successBox.hidden = false; return; }
 
   if (CONFIG.FORM_URL.includes("FORM_ID")) {
@@ -141,7 +129,6 @@ form.addEventListener("submit", async (e) => {
   submitBtn.textContent = "Отправляем…";
 
   try {
-    // no-cors: Google не отдаёт CORS-заголовки, поэтому ответ прочитать нельзя
     await fetch(CONFIG.FORM_URL, { method: "POST", mode: "no-cors", body });
   } catch (err) {
     submitBtn.disabled = false;
