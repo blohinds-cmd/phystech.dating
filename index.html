@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Познакомимся: анкета</title>
+  <meta name="description" content="Некоммерческая платформа знакомств. Заполните анкету и получите свою личную ссылку.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <span class="brand">Физтех.Знакомства</span>
+      <a class="top-link" href="#privacy">О данных</a>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <section class="intro">
+      <h1>Знакомства среди физтехов без смс и регистрации</h1>
+      <p class="lead">Это некоммерческий проект. Заполните анкету один раз, и вы получите личную ссылку на свою анкету. По ней (я) буду подбирать вам людей со схожими интересами.</p>
+      <ul class="facts">
+        <li>Анкета занимает около трёх минут</li>
+        <li>Только для тех, кому исполнилось 18 лет</li>
+        <li>Удалим вашу анкету по первой просьбе (честно-честно)</li>
+      </ul>
+      <div id="ref-banner" class="banner" hidden></div>
+    </section>
+
+    <section class="card" aria-labelledby="form-title">
+      <form id="profile-form" novalidate>
+        <h2 id="form-title">Анкета</h2>
+
+        <div class="field">
+          <label for="name">Имя</label>
+          <input id="name" name="name" type="text" maxlength="60" autocomplete="given-name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" maxlength="120" autocomplete="email" required>
+          <p class="hint">~Нужен только для связи. В публичной ссылке его не будет.</p>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="birth_date">Дата рождения:</label>
+            <input id="birth_date" name="birth_date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="gender">Кто я..?</label>
+            <select id="gender" name="gender" required>
+              <option value="">Выберите</option>
+              <option>Женщина</option>
+              <option>Мужчина</option>
+              <option>не скажу</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend>Хочу познакомиться с...</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="looking_for" value="Женщины"><span>Девочками-БМочками</span></label>
+            <label class="chip"><input type="checkbox" name="looking_for" value="Мужчины"><span>Сеченками</span></label>
+            <label class="chip"><input type="checkbox" name="looking_for" value="Мужчины"><span>Фембойчиками с фифта</span></label>
+            <label class="chip"><input type="checkbox" name="looking_for" value="Мужчины"><span>Немытыми фопфами</span></label>
+            <label class="chip"><input type="checkbox" name="looking_for" value="Другие"><span>Другими</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="city">Физтех-школа</label>
+          <input id="city" name="city" type="text" maxlength="80" autocomplete="address-level2" required>
+        </div>
+
+        <fieldset class="field">
+          <legend>Интересы</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="interests" value="Музыка"><span>Музыка</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Кино"><span>Кино</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Книги"><span>Книги</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Путешествия"><span>Путешествия</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Спорт"><span>Спорт</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Готовка"><span>Готовка</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Игры"><span>Игры</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Технологии"><span>Технологии</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Природа"><span>Природа</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="Искусство"><span>Искусство</span></label>
+            <label class="chip"><input type="checkbox" id="other-toggle"><span>Другое</span></label>
+          </div>
+          <div id="other-wrap" class="other-wrap" hidden>
+            <label for="interests_other">Ваши интересы</label>
+            <input id="interests_other" type="text" maxlength="120" placeholder="Например: шахматы, рыбалка, танцы">
+            <p class="hint">Перечислите через запятую, не больше пяти.</p>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="bio">О себе</label>
+          <textarea id="bio" name="bio" rows="4" maxlength="500"></textarea>
+          <p class="hint"><span id="bio-count">0</span> из 500 символов</p>
+        </div>
+
+        <div class="trap" aria-hidden="true">
+          <label>Сайт <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>Я согласен(на) на обработку данных анкеты для подбора знакомств и подтверждаю, что мне есть 18 лет</span>
+        </label>
+
+        <p id="form-error" class="error" role="alert" hidden></p>
+        <button id="submit-btn" class="btn" type="submit">Отправить анкету</button>
+      </form>
+
+      <div id="success" class="success" hidden tabindex="-1">
+        <h2>Анкета принята</h2>
+        <p>Это ваша личная ссылка. Сохраните её, она понадобится для подбора знакомств.</p>
+        <div class="link-box">
+          <input id="my-link" type="text" readonly aria-label="Ваша личная ссылка">
+          <button id="copy-btn" class="btn btn-ghost" type="button">Копировать</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="privacy" class="wrap privacy">
+    <h2>Как мы обращаемся с данными</h2>
+    <p>Мы собираем только то, что указано в анкете. Данные хранятся в закрытой таблице, доступ к ней есть только у организатора проекта. Они не продаются и не передаются третьим лицам. Чтобы удалить анкету, напишите на почту организатора и укажите свою личную ссылку.</p>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">Некоммерческий учебный проект (правда-правда)</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
