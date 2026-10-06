@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Физтех.знакомства: новости проекта</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="index.html" style="color:inherit;text-decoration:none">Физтех.знакомства</a>
+      <nav class="top-nav">
+        <a class="top-link" href="index.html">Анкета</a>
+        <a class="top-link" href="https://t.me/phystech_dating" target="_blank" rel="noopener">Telegram</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap news-page">
+    <h1>Новости проекта</h1>
+    <p class="lead">Здесь мы рассказываем, как идут дела и что будет дальше...</p>
+    <p style="margin-top:2rem"><a class="btn" href="https://t.me/phystech_dating" target="_blank" rel="noopener">Читать нас в Telegram</a></p>
+
+    <div class="news-list">
+      <article class="news-item">
+        <time datetime="2026-10-06">6 октября 2026</time>
+        <h2>Браслеты: мысля, которая приходит опосля</h2>
+        <figure class="news-photo">
+          <img src="images/news-braslety.png" alt="О реализации идеи с браслетами" loading="lazy">
+        </figure>
+        <p>Определена моделька и производитель браследов для реализации "флэшмоба". Стоит это благоденствие 12к рублей. Соберем?</p>
+      </article>
+      <article class="news-item">
+        <time datetime="2026-10-06">6 октября 2026</time>
+        <h2>Мы в ТГ</h2>
+        <p>Запущен ТГК где CEO founder и просто дурачок рассказывает о том, как работает!</p>
+      </article>
+      <article class="news-item">
+        <time datetime="2026-10-06">6 октября 2026</time>
+        <h2>Мы запустились</h2>
+        <p>Открыт приём анкет. Заполните её один раз и получите личную ссылку.</p>
+      </article>
+      <article class="news-item">
+        <time datetime="2026-10-13">Скоро</time>
+        <h2>Подбор по интересам</h2>
+        <p>Готовим первый подбор знакомств по общим интересам и городу. Мы напишем вам на почту, когда он будет готов.</p>
+      </article>
+    </div>
+
+    <section id="mylink" class="mylink card" hidden>
+      <h2>Ваша личная ссылка</h2>
+      <div class="link-box">
+        <input id="my-link" type="text" readonly aria-label="Ваша личная ссылка">
+        <button id="copy-btn" class="btn btn-ghost" type="button">Копировать</button>
+      </div>
+    </section>
+
+    <p style="margin-top:2rem"><a class="btn btn-ghost" href="index.html">Заполнить анкету</a></p>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">Некоммерческий учебный проект. Мы в <a href="https://t.me/phystech_dating" target="_blank" rel="noopener" style="color:#fff">Telegram</a></div>
+  </footer>
+
+  <script>
+    try {
+      const saved = localStorage.getItem("poznakomimsya_link");
+      if (saved) {
+        document.getElementById("my-link").value = saved;
+        document.getElementById("mylink").hidden = false;
+      }
+    } catch (err) { /* хранилище недоступно */ }
+
+    document.getElementById("copy-btn").addEventListener("click", async (e) => {
+      const input = document.getElementById("my-link");
+      try { await navigator.clipboard.writeText(input.value); }
+      catch { input.select(); document.execCommand("copy"); }
+      e.target.textContent = "Скопировано";
+    });
+  </script>
+</body>
+</html>

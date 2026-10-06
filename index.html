@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Познакомимся: анкета</title>
+  <title>Физтех.Знакомства: анкета</title>
   <meta name="description" content="Некоммерческая платформа знакомств. Заполните анкету и получите свою личную ссылку.">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,19 +11,27 @@
   <header class="top">
     <div class="wrap top-inner">
       <span class="brand">Физтех.Знакомства</span>
-      <a class="top-link" href="#privacy">О данных</a>
+      <nav class="top-nav">
+        <a class="top-link" href="news.html">Уже смешарик</a>
+        <a class="top-link" href="https://t.me/phystech_dating" target="_blank" rel="noopener">Telegram</a>
+        <a class="top-link" href="#privacy">О данных</a>
+      </nav>
     </div>
   </header>
 
   <main class="wrap layout">
     <section class="intro">
-      <h1>Знакомства среди физтехов без смс и регистрации</h1>
-      <p class="lead">Это некоммерческий проект. Заполните анкету один раз, и вы получите личную ссылку на свою анкету. По ней (я) буду подбирать вам людей со схожими интересами.</p>
+      <h1>Знакомства среди физтехов без рекламы и подписок</h1>
+      <p class="lead">Это некоммерческий проект. Заполните анкету один раз, и вы получите личную ссылку на свою анкету. По ней мы будем подбирать вам людей со схожими интересами.</p>
       <ul class="facts">
-        <li>Анкета занимает около трёх минут</li>
+        <li>Анкета займёт не более трёх минут</li>
         <li>Только для тех, кому исполнилось 18 лет</li>
-        <li>Удалим вашу анкету по первой просьбе (честно-честно)</li>
+        <li>Удалим вашу анкету по первой просьбе</li>
       </ul>
+      <div class="already">
+        <p>Уже отправили анкету?</p>
+        <a class="btn btn-ghost" href="news.html">Уже смешарик</a>
+      </div>
       <div id="ref-banner" class="banner" hidden></div>
     </section>
 
@@ -39,21 +47,21 @@
         <div class="field">
           <label for="email">Email</label>
           <input id="email" name="email" type="email" maxlength="120" autocomplete="email" required>
-          <p class="hint">~Нужен только для связи. В публичной ссылке его не будет.</p>
+          <p class="hint">Нужен только для связи. В публичной ссылке его не будет.</p>
         </div>
 
         <div class="row">
           <div class="field">
-            <label for="birth_date">Дата рождения:</label>
+            <label for="birth_date">Дата рождения</label>
             <input id="birth_date" name="birth_date" type="date" required>
           </div>
           <div class="field">
-            <label for="gender">Кто я..?</label>
+            <label for="gender">Я...</label>
             <select id="gender" name="gender" required>
               <option value="">Выберите</option>
-              <option>Женщина</option>
-              <option>Мужчина</option>
-              <option>не скажу</option>
+              <option>Девица красная</option>
+              <option>Богатырь</option>
+              <option>I'm a mechanic</option>
             </select>
           </div>
         </div>
@@ -61,17 +69,23 @@
         <fieldset class="field">
           <legend>Хочу познакомиться с...</legend>
           <div class="chips">
-            <label class="chip"><input type="checkbox" name="looking_for" value="Женщины"><span>Девочками-БМочками</span></label>
-            <label class="chip"><input type="checkbox" name="looking_for" value="Мужчины"><span>Сеченками</span></label>
-            <label class="chip"><input type="checkbox" name="looking_for" value="Мужчины"><span>Фембойчиками с фифта</span></label>
-            <label class="chip"><input type="checkbox" name="looking_for" value="Мужчины"><span>Немытыми фопфами</span></label>
+            <label class="chip"><input type="checkbox" name="looking_for" value="Женщины"><span>Девушкой</span></label>
+            <label class="chip"><input type="checkbox" name="looking_for" value="Мужчины"><span>Лучшим на свете, самым прекрасным парнем</span></label>
             <label class="chip"><input type="checkbox" name="looking_for" value="Другие"><span>Другими</span></label>
           </div>
         </fieldset>
 
         <div class="field">
-          <label for="city">Физтех-школа</label>
-          <input id="city" name="city" type="text" maxlength="80" autocomplete="address-level2" required>
+          <legend>Ваша физтех-школа</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="interests" value="ЛФИ"><span>ЛФИ</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="ФПМИ"><span>ФПМИ</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="ФРКТ"><span>ФРКТ</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="ФАКТ"><span>ФАКТ</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="ФЭФМ"><span>ФЭФМ</span></label>
+            <label class="chip"><input type="checkbox" name="interests" value="ФБМФ"><span>ФБМФ</span></label>
+            <label class="chip"><input type="checkbox" id="other-toggle"><span>Другое</span></label>
+          </div>
         </div>
 
         <fieldset class="field">
@@ -102,6 +116,7 @@
           <p class="hint"><span id="bio-count">0</span> из 500 символов</p>
         </div>
 
+        <!-- Ловушка для ботов: люди это поле не видят -->
         <div class="trap" aria-hidden="true">
           <label>Сайт <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
         </div>
@@ -122,6 +137,7 @@
           <input id="my-link" type="text" readonly aria-label="Ваша личная ссылка">
           <button id="copy-btn" class="btn btn-ghost" type="button">Копировать</button>
         </div>
+        <p class="after-link"><a class="btn" href="news.html">Перейти к новостям</a></p>
       </div>
     </section>
   </main>
@@ -132,7 +148,7 @@
   </section>
 
   <footer class="foot">
-    <div class="wrap">Некоммерческий учебный проект (правда-правда)</div>
+    <div class="wrap">Некоммерческий учебный проект. Мы в <a href="https://t.me/phystech_dating" target="_blank" rel="noopener" style="color:#fff">Telegram</a></div>
   </footer>
 
   <script src="script.js"></script>
